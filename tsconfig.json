@@ -2,7 +2,6 @@
   "compilerOptions": {
     "module": "nodenext",
     "moduleResolution": "nodenext",
-    "resolvePackageJsonExports": true,
     "esModuleInterop": true,
     "isolatedModules": true,
     "declaration": true,
@@ -23,19 +22,19 @@
     ],
     "paths": {
       "@app/common": [
-        "./libs/common/src"
+        "./libs/common/src/index.ts"
       ],
       "@app/common/*": [
         "./libs/common/src/*"
       ],
       "@app/database": [
-        "./libs/database/src"
+        "./libs/database/src/index.ts"
       ],
       "@app/database/*": [
         "./libs/database/src/*"
       ],
       "@app/kafka": [
-        "./libs/kafka/src"
+        "./libs/kafka/src/index.ts"
       ],
       "@app/kafka/*": [
         "./libs/kafka/src/*"
@@ -52,6 +51,9 @@
     },
     {
       "path": "./libs/common/tsconfig.lib.json"
+    },
+    {
+      "path": "./libs/database/tsconfig.lib.json"
     },
     {
       "path": "./libs/kafka/tsconfig.lib.json"
