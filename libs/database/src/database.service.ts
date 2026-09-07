@@ -11,6 +11,12 @@ export class DatabaseService implements OnModuleDestroy {
     constructor() {
         const connectionString = process.env.DATABASE_URL!;
 
+        if (!connectionString) {
+            throw new Error(
+                '❌ Database connection failure: "DATABASE_URL" environment variable is missing or undefined.'
+            );
+        }
+        
         this.pool = new Pool({ connectionString });
         this.db = drizzle(this.pool, { schema });
 
@@ -21,7 +27,7 @@ export class DatabaseService implements OnModuleDestroy {
         await this.pool.end();
     }
 
-    get schema(){
+    get schema() {
         return schema
     }
 }
