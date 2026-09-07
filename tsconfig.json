@@ -57,7 +57,12 @@
     },
     {
       "path": "./libs/kafka/tsconfig.lib.json"
+    },
+    {
+      "path": "./apps/events-service/tsconfig.app.json"
+    },
+    {
+      "path": "./apps/events-service/tsconfig.app.json"
     }
-  ],
-  "include": ["./drizzle.config.ts"]
+  ]
 }
