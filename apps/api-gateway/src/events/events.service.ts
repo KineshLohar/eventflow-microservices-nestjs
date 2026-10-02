@@ -7,13 +7,93 @@ import { firstValueFrom } from 'rxjs';
 export class EventsService {
     private readonly eventServiceUrl = `http://localhost:${SERVICES_PORT.EVENTS_SERVICE}`;
 
-    constructor(private readonly httpService: HttpService){}
+    constructor(private readonly httpService: HttpService) { }
 
-    async create(data: object, userId: string, userRole: string){
+    async create(data: object, userId: string, userRole: string) {
         try {
             const response = await firstValueFrom(
                 this.httpService.post(this.eventServiceUrl, data, {
-                    headers: { 'x-user-id': userId, 'x-user-role': userRole}
+                    headers: { 'x-user-id': userId, 'x-user-role': userRole }
+                })
+            )
+
+            return response.data;
+        } catch (error) {
+            this.handleError(error)
+        }
+    }
+
+    async findAll() {
+        try {
+            const response = await firstValueFrom(
+                this.httpService.get(`${this.eventServiceUrl}`)
+            )
+
+            return response.data;
+        } catch (error) {
+            this.handleError(error)
+        }
+    }
+
+    async findMyEvents(userId: string) {
+        try {
+            const response = await firstValueFrom(
+                this.httpService.get(`${this.eventServiceUrl}/my-events`, {
+                    headers: { 'x-user-id': userId }
+                })
+            )
+
+            return response.data;
+        } catch (error) {
+            this.handleError(error)
+        }
+    }
+
+    async findOne(id: string) {
+        try {
+            const response = await firstValueFrom(
+                this.httpService.get(`${this.eventServiceUrl}/${id}`)
+            )
+
+            return response.data;
+        } catch (error) {
+            this.handleError(error)
+        }
+    }
+
+    async update(id: string, data: object, userId: string, userRole: string) {
+        try {
+            const response = await firstValueFrom(
+                this.httpService.put(`${this.eventServiceUrl}/${id}`, data, {
+                    headers: { 'x-user-id': userId, 'x-user-role': userRole }
+                })
+            )
+
+            return response.data;
+        } catch (error) {
+            this.handleError(error)
+        }
+    }
+
+    async publish(id: string, userId: string, userRole: string) {
+        try {
+            const response = await firstValueFrom(
+                this.httpService.post(`${this.eventServiceUrl}/${id}/publish`, {}, {
+                    headers: { 'x-user-id': userId, 'x-user-role': userRole }
+                })
+            )
+
+            return response.data;
+        } catch (error) {
+            this.handleError(error)
+        }
+    }
+
+    async cancel(id: string, userId: string, userRole: string) {
+        try {
+            const response = await firstValueFrom(
+                this.httpService.post(`${this.eventServiceUrl}/${id}/cancel`, {}, {
+                    headers: { 'x-user-id': userId, 'x-user-role': userRole }
                 })
             )
 

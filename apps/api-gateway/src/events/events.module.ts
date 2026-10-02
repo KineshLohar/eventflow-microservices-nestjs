@@ -1,0 +1,13 @@
+import { HttpModule } from "@nestjs/axios";
+import { Module } from "@nestjs/common";
+import { EventsController } from "./events.controller.js";
+import { EventsService } from "./events.service.js";
+
+
+
+@Module({
+    imports:[HttpModule],
+    controllers: [EventsController],
+    providers: [EventsService]
+})
+export class EventsModule {}

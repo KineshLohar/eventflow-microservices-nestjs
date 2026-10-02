@@ -30,6 +30,8 @@ export class EventsServiceService implements OnModuleInit {
       title: event.title,
       timestamp: new Date().toISOString()
     })
+
+    return event;
   }
 
   async findAll() {
@@ -47,7 +49,7 @@ export class EventsServiceService implements OnModuleInit {
       throw new NotFoundException('Event Not Found!')
     }
 
-    return event
+    return event;
   }
 
   async update(id: string, updateEventDto: UpdateEventDto, userId: string, userRole: string) {
