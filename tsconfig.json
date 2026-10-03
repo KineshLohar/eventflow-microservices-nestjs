@@ -62,7 +62,7 @@
       "path": "./apps/events-service/tsconfig.app.json"
     },
     {
-      "path": "./apps/events-service/tsconfig.app.json"
+      "path": "./apps/tickets-service/tsconfig.app.json"
     }
   ]
 }
