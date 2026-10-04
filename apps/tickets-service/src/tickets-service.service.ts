@@ -90,7 +90,7 @@ export class TicketsServiceService implements OnModuleInit {
     }
   }
 
-  async findMyTicket(userId: string) {
+  async findMyTickets(userId: string) {
     const userTickets = await this.dbService.db
       .select({
         id: tickets.id,
