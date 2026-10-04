@@ -1,4 +1,4 @@
-import { integer, pgEnum, pgTable, uuid, varchar } from "drizzle-orm/pg-core";
+import { integer, pgEnum, pgTable, timestamp, uuid, varchar } from "drizzle-orm/pg-core";
 import { events } from "./events.js";
 import { users } from "./users.js";
 
@@ -20,5 +20,12 @@ export const tickets = pgTable('tickets', {
     quantity: integer('quantity').default(1).notNull(),
     totalPrice: integer('total_price').notNull(),
     status: ticketStatusEnum('status').default('PENDING').notNull(),
-    ticketCode: varchar('ticket_code', { length: 20 }).notNull()
+    ticketCode: varchar('ticket_code', { length: 20 }).notNull(),
+    puchasedAt: timestamp('purchased_at').defaultNow().notNull(),
+    checkedInAt: timestamp('checked_in_at'),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at').defaultNow().notNull(),
 })
+
+export type Ticket = typeof tickets.$inferSelect; 
+export type NewTicket = typeof tickets.$inferInsert;
