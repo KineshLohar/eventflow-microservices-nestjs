@@ -7,9 +7,7 @@ import { firstValueFrom } from 'rxjs';
 export class AuthService {
     private readonly authServiceUrl = `http://localhost:${SERVICES_PORT.AUTH_SERVICE}`;
 
-    constructor(
-        private readonly httpService: HttpService
-    ) { }
+    constructor(private readonly httpService: HttpService) {}
 
     async register(data: RegisterDto) {
         try {
@@ -35,11 +33,11 @@ export class AuthService {
         }
     }
 
-    async getProfile(token:string) {
+    async getProfile(token: string) {
         try {
             const response = await firstValueFrom(
                 this.httpService.get(`${this.authServiceUrl}/profile`, {
-                    headers :{ Authorization: token}
+                    headers: { Authorization: token }
                 })
             )
 
@@ -49,8 +47,8 @@ export class AuthService {
         }
     }
 
-    private handleError(error: any){
-        if(error.response){
+    private handleError(error: any) {
+        if (error.response) {
             throw new HttpException(error.response.data, error.response.status);
         }
 

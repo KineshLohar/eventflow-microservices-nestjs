@@ -1,5 +1,5 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { SERVICES_PORT } from '@app/common';
+import { CreateEventDto, SERVICES_PORT, UpdateEventDto } from '@app/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 
@@ -9,7 +9,7 @@ export class EventsService {
 
     constructor(private readonly httpService: HttpService) { }
 
-    async create(data: object, userId: string, userRole: string) {
+    async create(data: CreateEventDto, userId: string, userRole: string) {
         try {
             const response = await firstValueFrom(
                 this.httpService.post(this.eventServiceUrl, data, {
@@ -61,7 +61,7 @@ export class EventsService {
         }
     }
 
-    async update(id: string, data: object, userId: string, userRole: string) {
+    async update(id: string, data: UpdateEventDto, userId: string, userRole: string) {
         try {
             const response = await firstValueFrom(
                 this.httpService.put(`${this.eventServiceUrl}/${id}`, data, {
