@@ -1,8 +1,10 @@
 import { CheckInTicketDto, PurchaseTicketDto } from '@app/common';
-import { Body, Controller, Get, Param, ParseUUIDPipe, Post, Request } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseUUIDPipe, Post, Request, UseGuards } from '@nestjs/common';
 import { TicketsService } from './tickets.service.js';
+import { AuthGuard } from '@nestjs/passport';
 
-@Controller()
+@Controller('tickets')
+@UseGuards(AuthGuard('jwt'))
 export class TicketsController {
     constructor(private readonly ticketsService: TicketsService) { }
 

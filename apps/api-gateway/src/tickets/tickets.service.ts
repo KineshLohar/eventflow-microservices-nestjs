@@ -83,7 +83,7 @@ export class TicketsService {
     async findEventTickets(eventId: string, organizerId: string) {
         try {
             const response = await firstValueFrom(
-                this.httpService.post(`${this.ticketsServiceUrl}/event/${eventId}` , {
+                this.httpService.get(`${this.ticketsServiceUrl}/event/${eventId}` , {
                     headers: { 'x-user-id': organizerId }
                 })
             );
