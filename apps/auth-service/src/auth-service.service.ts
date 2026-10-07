@@ -22,6 +22,10 @@ export class AuthServiceService implements OnModuleInit {
     await this.kafkaClient.connect();
   }
 
+  getHello(){
+    return 'Hello World!';
+  }
+
   async register(payload: RegisterDto) {
 
     const [existingUser] = await this.dbService.db.select().from(users).where(eq(users.email, payload.email));
